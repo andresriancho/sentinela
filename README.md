@@ -7,8 +7,8 @@ The initial motivation was to create a daemon that would monitor a set of log fi
 
 Given Sentinela's modular nature, you can also extend it to monitor network traffic, processes, disk usage, etc. and run any actions such as sending an email, send a SNMP alert, etc.
 
-Usage
-=====
+Basic configuration
+===================
 
 Sentinela configured using the `config/sentinela.cfg` file, which allows you to enable rules which are going to be run.
 
