@@ -4,10 +4,11 @@ from setuptools import setup, find_packages
 from os.path import join, dirname
 
 
-setup(name='sentinela',
+setup(
+      name='sentinela',
 
       version='0.2',
-      license = 'GPL',
+      license = 'GNU General Public License v2 (GPLv2)',
       platforms='Linux',
       
       description=('Sentinela is a highly configurable operating system watchdog'
@@ -25,6 +26,17 @@ setup(name='sentinela',
       entry_points={
           'console_scripts':
               ['sentinela = sentinela.sentinela:main']
-        }
+        },
+      
+      classifiers = [
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+        'Natural Language :: English',
+        'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Topic :: System :: Monitoring'
+        ],
       
      )
