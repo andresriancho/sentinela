@@ -47,7 +47,7 @@ def main():
         while True:
             try:
                 st.click()
-                time.sleep(0.5)
+                time.sleep(60)
             except KeyboardInterrupt:
                 logging.info('Received signal. Exiting')
                 break
