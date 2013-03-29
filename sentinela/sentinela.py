@@ -29,8 +29,7 @@ from core.utils.operating_system import check_if_root
 from core.utils.log_handler import configure_logging
 from core.sentinela import Sentinela
 
-
-if __name__ == '__main__':
+def main():
     check_if_root()
 
     with daemon.DaemonContext(working_directory='.',):
@@ -59,3 +58,6 @@ if __name__ == '__main__':
                     is_alive = 0
     
     sys.exit(0)
+    
+if __name__ == '__main__':
+    main()
