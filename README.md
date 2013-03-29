@@ -16,7 +16,7 @@ Rules are defined in python code and are found in the `rules/` directory. In mos
  * `modules/monitors/`: Once every minute read from a resource and store it's status. When required return `True` to trigger an action.
  * `modules/actions/`: Actions will run a command, send an email or any other python defined code you can imagine.
 
-Running Sentinela 
+Running Sentinela
 =================
 
 To start sentinela you need to run:
@@ -67,4 +67,9 @@ The `call_every_minute` function (line 8) needs to be defined for a rule to be v
 `debug_print.do` will print the name of the monitor passed as parameter.
 
 To sum up, we can say that this rule will 'Print the name of the monitor to sentinela's log file when the `/var/log/apache2/access.log` logfile is inactive during 10 minutes'.
+
+Once you've created your own rule, you'll have to follow these steps to run them:
+ * Copy your `.py` file to the `rules/` directory in the sentinela installation
+ * Update the `config/sentinela.cfg` to include your rule name (without the extension)
+ * Restart the sentinela daemon
 
