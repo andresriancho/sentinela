@@ -28,6 +28,7 @@ setup(
               ['sentinela = sentinela.sentinela:main']
         },
       
+      # https://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers = [
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
