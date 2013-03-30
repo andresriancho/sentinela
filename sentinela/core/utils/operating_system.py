@@ -31,4 +31,11 @@ def check_if_root():
 
 def run_command(cmd):
     logging.debug('Going to execute command "%s".' % cmd)
-    #os.system(cmd)
+    os.system(cmd)
+    
+def change_working_directory():
+    dirname = os.path.dirname(os.path.realpath(__file__))
+    sentinela_root = os.path.join(dirname, '..', '..')
+    os.chdir(sentinela_root)
+    return sentinela_root
+    
