@@ -25,14 +25,16 @@ import logging
 import daemon
 
 from core.utils.rule_handler import parse_rules, get_enabled_rules
-from core.utils.operating_system import check_if_root
+from core.utils.operating_system import check_if_root, change_working_directory
 from core.utils.log_handler import configure_logging
 from core.sentinela import Sentinela
 
+
 def main():
     check_if_root()
-
-    with daemon.DaemonContext(working_directory='.',):
+    sentinela_root = change_working_directory()
+        
+    with daemon.DaemonContext(working_directory=sentinela_root):
         configure_logging()
         
         # TODO: The 'rules/' should be a command line argument
@@ -49,7 +51,7 @@ def main():
                 st.click()
                 time.sleep(60)
             except KeyboardInterrupt:
-                logging.info('Received signal. Exiting')
+                logging.info('Received signal, exiting')
                 break
             else:
                 is_alive += 1
@@ -57,6 +59,7 @@ def main():
                     logging.debug('Sentinela is alive')
                     is_alive = 0
     
+    logging.info('Exit with code 0')
     sys.exit(0)
     
 if __name__ == '__main__':
