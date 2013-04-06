@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
 import logging
 
-from core.base_action import BaseAction
+from sentinela.core.base_action import BaseAction
 
 
 class DebugPrint(BaseAction):

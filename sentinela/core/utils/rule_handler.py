@@ -64,12 +64,10 @@ def parse_rules(rule_path, enabled_rules):
     
     return functors
 
-def get_enabled_rules():
+def get_enabled_rules(config_file=os.path.join('config', 'sentinela.cfg')):
     '''
     Read the config file and return the list of enabled rules.
     '''
-    config_file = os.path.join('config', 'sentinela.cfg')
-    
     try:        
         config_file_handler = file(config_file)
     except:

@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
 import psutil
 
-from core.base_monitor import BaseMonitor
+from sentinela.core.base_monitor import BaseMonitor
 
 
 class DiskUsage(BaseMonitor):
