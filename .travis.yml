@@ -6,6 +6,6 @@ python:
 install: "pip install --use-mirrors psutil python-daemon"
 # command to run tests
 script:
-  - nosetests
+  - nosetests -v
   - python setup.py test
 
