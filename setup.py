@@ -40,4 +40,7 @@ setup(
         'Topic :: System :: Monitoring'
         ],
       
+       # In order to run this command: python setup.py test
+       test_suite="nose.collector",
+       tests_require="nose",
      )
