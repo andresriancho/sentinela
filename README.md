@@ -1,6 +1,6 @@
-Sentinela [![Build Status](https://travis-ci.org/andresriancho/sentinela.png?branch=master)](https://travis-ci.org/andresriancho/sentinela)
+Sentinela
 =========
-
+[![Build Status](https://travis-ci.org/andresriancho/sentinela.png?branch=master)](https://travis-ci.org/andresriancho/sentinela)
 Sentinela is a highly configurable operating system watchdog which can take actions based on pre-configured rules.
 
 The initial motivation was to create a daemon that would monitor a set of log files and if no activity was present shutdown the operating system. This was extremely useful for making sure my ec2 instances were shut down after a specified idle time.
