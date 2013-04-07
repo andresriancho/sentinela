@@ -26,11 +26,7 @@ def parse_rules(rule_path, enabled_rules):
     '''
     Read all rules from the rule_path and return a list of all functors
     which need to be called every minute.
-    '''
-    rule_module_path = rule_path.replace(os.path.sep, '.')
-    if rule_module_path.endswith('.'):
-        rule_module_path = rule_module_path[:-1]
-        
+    '''        
     functors = []
     
     for filename in os.listdir(rule_path):
@@ -41,14 +37,16 @@ def parse_rules(rule_path, enabled_rules):
             if module_name not in enabled_rules:
                 continue
             
+            module = 'sentinela.rules.%s' % (module_name)
+            
             try:
-                imported_module = __import__('%s.%s' % (rule_module_path, module_name))
+                imported_module = __import__(module)
             except ImportError:
-                logging.exception('Failed to import the "%s" rule.' % module_name)
+                logging.exception('Failed to import the "%s" rule.' % module)
             except ValueError:
-                logging.exception('Failed to import the "%s" rule.' % module_name)
+                logging.exception('Failed to import the "%s" rule.' % module)
             else:
-                logging.debug('Imported %s.%s' % (rule_module_path, module_name))
+                logging.debug('Imported %s' % module)
                 
                 module_inst = getattr(imported_module, module_name)
                 
@@ -64,26 +62,27 @@ def parse_rules(rule_path, enabled_rules):
     
     return functors
 
-def get_enabled_rules(config_file=os.path.join('config', 'sentinela.cfg')):
+def get_enabled_rules(config_file):
     '''
     Read the config file and return the list of enabled rules.
     '''
+    enabled_rules = []
+    
     try:        
         config_file_handler = file(config_file)
     except:
         logging.exception('Failed to open sentinela config "%s"' % config_file)
+    else:
     
-    enabled_rules = []
-    
-    for rule_name in config_file_handler.readlines():
-        rule_name = rule_name.strip()
-        
-        if rule_name.startswith('#'):
-            continue
-        
-        if not rule_name:
-            continue
-        
-        enabled_rules.append(rule_name)
+        for rule_name in config_file_handler.readlines():
+            rule_name = rule_name.strip()
+            
+            if rule_name.startswith('#'):
+                continue
+            
+            if not rule_name:
+                continue
+            
+            enabled_rules.append(rule_name)
 
     return enabled_rules

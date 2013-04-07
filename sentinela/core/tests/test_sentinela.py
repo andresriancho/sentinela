@@ -20,17 +20,35 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
 import unittest
 
-from mock import patch, call
+from mock import MagicMock
 
-from sentinela.sentinela import sentinela_loop, LOOPS
+from sentinela.core.sentinela import Sentinela
 
     
-class TestSentinelaMain(unittest.TestCase):
+class TestSentinela(unittest.TestCase):
     
-    def test_sentinela_loop(self):
-        with patch('sentinela.sentinela.Sentinela') as sentinela_inst:
-            sentinela_loop(0.1, 5)
-            
-            # Asserts that this is called: st = Sentinela(rules)
-            self.assertEqual(sentinela_inst.call_count, 1)
-            self.assertEqual(sentinela_inst.call_args, call([]))
+    def test_clicks(self):
+        rule_click = MagicMock()
+
+        rules = [rule_click,]
+        
+        s = Sentinela(rules)
+        s.click()
+        
+        self.assertEqual(rule_click.call_count, 1)
+        s.click()
+        
+        self.assertEqual(rule_click.call_count, 2)
+
+    def test_clicks_exception(self):
+        rule_click = MagicMock(side_effect=Exception())
+
+        rules = [rule_click,]
+        
+        s = Sentinela(rules)
+        s.click()
+        
+        self.assertEqual(rule_click.call_count, 1)
+        s.click()
+        
+        self.assertEqual(rule_click.call_count, 1)
