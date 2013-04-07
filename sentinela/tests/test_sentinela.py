@@ -33,4 +33,4 @@ class TestSentinelaMain(unittest.TestCase):
             
             # Asserts that this is called: st = Sentinela(rules)
             self.assertEqual(sentinela_inst.call_count, 1)
-            self.assertEqual(sentinela_inst.call_args, call([]))
+            self.assertNotEqual(sentinela_inst.call_args, call([]))

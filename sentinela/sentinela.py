@@ -59,10 +59,9 @@ def sentinela_loop(delay=DELAY, max_loops=None):
     '''
     curr_dir = os.path.dirname(os.path.realpath(__file__))
     sentinela_cfg = os.path.join(curr_dir, 'config', 'sentinela.cfg')
-    rule_path = os.path.join(curr_dir, 'rules')
     
     enabled_rules = get_enabled_rules(sentinela_cfg)
-    rules = parse_rules(rule_path, enabled_rules)
+    rules = parse_rules(enabled_rules)
     
     st = Sentinela(rules)
     

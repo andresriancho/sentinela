@@ -21,8 +21,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import unittest
 import tempfile
 import os
+import types
 
-from sentinela.core.utils.rule_handler import get_enabled_rules
+from sentinela.core.utils.rule_handler import get_enabled_rules, parse_rules
 
 
 class TestRuleHandler(unittest.TestCase):
@@ -41,4 +42,12 @@ class TestRuleHandler(unittest.TestCase):
         self.assertEqual(set(rules), set(['rule1', 'rule2']))
         
         os.remove(temp_rules_file_name)
+        
+    def test_parse_rules(self):
+        functors = parse_rules(['apache_debug',])
+        
+        self.assertEqual(len(functors), 1)
+        
+        functor = functors[0]
+        self.assertIsInstance(functor, types.FunctionType)
         
