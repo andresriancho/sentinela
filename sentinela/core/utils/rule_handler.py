@@ -18,47 +18,45 @@ You should have received a copy of the GNU General Public License
 along with w3af; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 '''
-import os
 import logging
 
 
-def parse_rules(rule_path, enabled_rules):
+def parse_rules(enabled_rules):
     '''
     Read all rules from the rule_path and return a list of all functors
     which need to be called every minute.
+    
+    :enabled_rules: A string list with rule names.
     '''        
     functors = []
     
-    for filename in os.listdir(rule_path):
+    for rule in enabled_rules:
 
-        if filename.endswith('py') and not filename.startswith('__init__'):
-            module_name = filename.replace('.py', '')
+        '''
+        Reminder:
+        >>> __import__('sentinela.rules.apache_debug', fromlist=['apache_debug'])
+        <module 'sentinela.rules.apache_debug' from 'sentinela/rules/apache_debug.pyc'>
+        '''
+        
+        module_name = 'sentinela.rules.%s' % (rule)
+        
+        try:
+            module_inst = __import__(module_name, fromlist=[rule])
+        except Exception, e:
+            msg = 'Failed to import the "%s" rule. Exception: "%s".'
+            logging.exception(msg % (module_name, e))
+        else:
+            logging.debug('Imported %s' % module_name)
             
-            if module_name not in enabled_rules:
+            cev = 'call_every_minute'
+            functor = getattr(module_inst, cev, None)
+            
+            if functor is None:
+                msg = 'The %s rule does NOT define the required %s'
+                logging.error(msg % (module_name, cev))
                 continue
             
-            module = 'sentinela.rules.%s' % (module_name)
-            
-            try:
-                imported_module = __import__(module)
-            except ImportError:
-                logging.exception('Failed to import the "%s" rule.' % module)
-            except ValueError:
-                logging.exception('Failed to import the "%s" rule.' % module)
-            else:
-                logging.debug('Imported %s' % module)
-                
-                module_inst = getattr(imported_module, module_name)
-                
-                cev = 'call_every_minute'
-                functor = getattr(module_inst, cev, None)
-                
-                if functor is None:
-                    msg = 'The %s rule does NOT define the required %s'
-                    logging.error(msg % (module_name, cev))
-                    continue
-                
-                functors.append(functor)
+            functors.append(functor)
     
     return functors
 

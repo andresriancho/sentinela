@@ -7,7 +7,7 @@ from os.path import join, dirname
 setup(
       name='sentinela',
 
-      version='0.2',
+      version='0.2.1',
       license = 'GNU General Public License v2 (GPLv2)',
       platforms='Linux',
       
