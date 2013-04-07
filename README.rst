@@ -1,7 +1,10 @@
 Sentinela
 =========
 
-`|Build Status| <https://travis-ci.org/andresriancho/sentinela>`_
+.. image:: https://travis-ci.org/andresriancho/sentinela.png?branch=master
+   :alt: Build Status
+   :align: right
+   :target: https://travis-ci.org/andresriancho/sentinela
 
 Sentinela is a highly configurable operating system watchdog which can
 take actions based on pre-configured rules.
@@ -82,8 +85,8 @@ created each time and no state will be kept.
 
 Monitors and actions can have parameters, in this line 4 we see how the
 ``NewLogEntries`` monitor takes two parameters:
- * The log file to monitor for changes 
- * How many minutes of inactivity it will wait until returning ``True``
+* The log file to monitor for changes 
+* How many minutes of inactivity it will wait until returning ``True``
 
 The ``call_every_minute`` function (line 8) needs to be defined for a
 rule to be valid. This function, as the name indicates, will be called
@@ -103,9 +106,9 @@ Enabling new rules
 
 Once you've created your own rule, you'll have to follow these steps to
 run them:
- * Copy your ``.py`` file to the ``rules/`` directory in the sentinela installation
- * Update the ``config/sentinela.cfg`` to include your rule name (without the extension)
- * Restart the sentinela daemon
+* Copy your ``.py`` file to the ``rules/`` directory in the sentinela installation
+* Update the ``config/sentinela.cfg`` to include your rule name (without the extension)
+* Restart the sentinela daemon
 
 Example rules
 -------------
@@ -128,5 +131,3 @@ Report your issues and feature requests in `Sentinela's issue
 tracker <https://github.com/andresriancho/sentinela/issues>`_ and I'll
 be more than glad to fix them.
 
-.. |Build
-Status| image:: https://travis-ci.org/andresriancho/sentinela.png?branch=master
