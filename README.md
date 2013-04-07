@@ -21,7 +21,7 @@ Running Sentinela
 =================
 
 To start sentinela you need to run:
-```
+```text
 sudo python sentinela.py
 ```
 
@@ -40,7 +40,7 @@ Creating your own rules
 
 Creating your own rules is easy. Lets understand the basics by looking at this example rule:
 
-```
+```python
 1: from modules.monitors.new_log_entries import NewLogEntries
 2: from modules.actions.debug_print import DebugPrint
 3: 
@@ -73,4 +73,14 @@ Once you've created your own rule, you'll have to follow these steps to run them
  * Copy your `.py` file to the `rules/` directory in the sentinela installation
  * Update the `config/sentinela.cfg` to include your rule name (without the extension)
  * Restart the sentinela daemon
+
+Testing new rules
+=================
+
+In order to test your new rules before deploying them you can follow [these steps](https://github.com/andresriancho/sentinela/wiki/Testing-your-changes).
+
+Reporting bugs
+==============
+
+Report your issues and feature requests in [Sentinela's issue tracker](https://github.com/andresriancho/sentinela/issues) and I'll be more than glad to fix them.
 
