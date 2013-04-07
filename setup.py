@@ -7,13 +7,13 @@ from os.path import join, dirname
 setup(
       name='sentinela',
 
-      version='0.2.1',
+      version='0.2.2',
       license = 'GNU General Public License v2 (GPLv2)',
       platforms='Linux',
       
       description=('Sentinela is a highly configurable operating system watchdog'
                    ' which can take actions based on pre-configured rules.'),
-      long_description=open(join(dirname(__file__), 'README.md')).read(),
+      long_description=open(join(dirname(__file__), 'README.rst')).read(),
       
       author='Andres Riancho',
       author_email='andres.riancho@gmail.com',
