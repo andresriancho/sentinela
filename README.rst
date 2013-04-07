@@ -85,6 +85,7 @@ created each time and no state will be kept.
 
 Monitors and actions can have parameters, in this line 4 we see how the
 ``NewLogEntries`` monitor takes two parameters:
+
 * The log file to monitor for changes 
 * How many minutes of inactivity it will wait until returning ``True``
 
@@ -106,6 +107,7 @@ Enabling new rules
 
 Once you've created your own rule, you'll have to follow these steps to
 run them:
+
 * Copy your ``.py`` file to the ``rules/`` directory in the sentinela installation
 * Update the ``config/sentinela.cfg`` to include your rule name (without the extension)
 * Restart the sentinela daemon
